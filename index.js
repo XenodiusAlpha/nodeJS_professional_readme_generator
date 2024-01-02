@@ -1,7 +1,22 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const badge = require('badge-maker');
 const emailValidator = require("email-validator");
 emailValidator.validate("test@email.com");
+
+const licenseBadges = (license) => {
+    let badge = '';
+    if (license === 'MIT License') {
+        badge = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)';
+    } else if (license === 'Apache License 2.0') {
+        badge = '[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)';
+    } else if (license === 'BSD') {
+        badge = '[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)';
+    } else {
+        badge = '';
+    }
+    return badge;
+}
 
 const readMeVariables = [
     {
@@ -117,12 +132,12 @@ const readMeVariables = [
 ];
 
 const generateREADME = ({
-    title, description, installation, usage, license, contributing, tests, username, email
+    title, description, installation, usage, license, contributing, tests, userName, email
 }) =>
-`#${title}
+`# ${title}
 
 ## License
-${license}
+${license}   ${licenseBadges(license)}
 
 ## Description
 ${description}
@@ -148,19 +163,20 @@ ${contributing}
 ${tests}
 
 ## Questions
-If you have any questions, you can reach me at:
-GitHub username: ${username}
-Email address: ${email}
+### If you have any questions, you can reach me at:
+- GitHub: https://github.com/${userName}
+- Email address: ${email}
 `;
 
 function initReadMeFile() {
     inquirer
         .prompt(readMeVariables)
         .then((answers) => {
-            // fs.writeFile
-        })
-        // todo fs.writefile
-        // fs.writeFile('README.md',)
-}
+            const readMePageContent = generateREADME(answers);
+            fs.writeFile('./GeneratedReadMeFile/README.md', readMePageContent, (err) =>
+            err ? console.log(err) : console.log('Successfully created README.md file!')
+            );
+        });
+};
 
 initReadMeFile();
