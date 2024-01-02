@@ -114,16 +114,53 @@ const readMeVariables = [
         },
         
     }
-]
+];
+
+const generateREADME = ({
+    title, description, installation, usage, license, contributing, tests, username, email
+}) =>
+`#${title}
+
+## License
+${license}
+
+## Description
+${description}
+
+## Contents
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+
+## Installation
+${installation}
+
+## Usage
+${usage}
+
+## Contributing
+${contributing}
+
+## Tests
+${tests}
+
+## Questions
+If you have any questions, you can reach me at:
+GitHub username: ${username}
+Email address: ${email}
+`;
 
 function initReadMeFile() {
     inquirer
         .prompt(readMeVariables)
         .then((answers) => {
-            fs.writeFile
+            // fs.writeFile
         })
         // todo fs.writefile
-        fs.writeFile('README.md',)
+        // fs.writeFile('README.md',)
 }
 
 initReadMeFile();
