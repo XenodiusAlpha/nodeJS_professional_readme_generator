@@ -25,7 +25,7 @@ git clone https://github.com/XenodiusAlpha/nodeJS_professional_readme_generator.
 npm install
 ```
 ## Usage
-1. After installing dependencies, run the command
+1. After installing dependencies, run the command node index.js to start up the application in the terminal.
 ```bash
 node index.js
 ```
@@ -42,7 +42,7 @@ N/A
 ![Generated Readme file](image.png)
 
 ## Video link
-
+https://drive.google.com/file/d/1u173j9hwP6z83hVx_KNZRQwEGgypE7Sc/view?usp=drive_link
 
 ## Questions
 ### If you have any questions, you can reach me at:
